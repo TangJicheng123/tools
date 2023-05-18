@@ -1,4 +1,4 @@
-wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2023.03-1-Linux-x86_64.sh
+wget https://repo.anaconda.com/archive/Anaconda3-2023.03-1-Linux-x86_64.sh
 source ~/.bashrc
 cd /home/ec2-user/SageMaker
 conda create -n py310 python=3.10
