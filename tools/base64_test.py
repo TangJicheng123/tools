@@ -15,6 +15,8 @@ data = b'Hello, World!'  # 要编码的数据（字节字符串）
 encoded_string = encode_base64(data)
 print("Base64编码结果:", encoded_string)
 
+print("encoded data type: ", type(encoded_string))
+
 # Base64解码示例
 decoded_data = decode_base64(encoded_string)
 print("Base64解码结果:", decoded_data)
