@@ -1,0 +1,53 @@
+FROM nvidia/cuda:11.4.1-devel-ubuntu20.04 AS devel-base
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update -y && \
+    apt-get install -y apache2
+
+RUN apt-get update -y && apt-get upgrade -y \
+    && apt-get install -y libgl1 libglib2.0-0 wget git \
+    unzip curl vim\
+    git-lfs \
+    supervisor ffmpeg libsm6 libxext6 \
+    clang \
+    build-essential \
+    libssl-dev \
+    default-libmysqlclient-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN cd /root && wget https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh -O miniconda.sh \
+    && bash miniconda.sh -b -p /opt/conda && rm -rf ./miniconda.sh
+ENV PATH="/opt/conda/bin:${PATH}"
+
+# download aws cli
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip -q awscliv2.zip
+RUN ./aws/install
+
+RUN pip install --upgrade pip
+RUN pip install --pre xformers
+RUN pip install --pre triton
+RUN pip install numexpr
+
+RUN mkdir /content
+WORKDIR /content
+
+RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git \
+    && cd stable-diffusion-webui \
+    && git reset --hard 9377092a892687a8ae43ba5f7df44f0929ab2997 \
+    && pip install --ignore-installed -r requirements_versions.txt
+
+RUN sed -i -e '''/    prepare_environment()/a\    os.system\(f\"""sed -i -e ''\"s/dict()))/dict())).cuda()/g\"'' /content/stable-diffusion-webui/repositories/stable-diffusion-stability-ai/ldm/util.py""")''' /content/stable-diffusion-webui/launch.py
+RUN sed -i -e 's/fastapi==0.90.1/fastapi==0.89.1/g' /content/stable-diffusion-webui/requirements_versions.txt
+RUN sed -i -e 's/    start()/    #start()/g' /content/stable-diffusion-webui/launch.py
+RUN cd stable-diffusion-webui && python launch.py --skip-torch-cuda-test
+
+RUN git clone https://github.com/Mikubill/sd-webui-controlnet /content/stable-diffusion-webui/extensions/sd-webui-controlnet && cd /content/stable-diffusion-webui/extensions/sd-webui-controlnet && ls -lh && git reset --hard 2514a460ab9e0c6db38033aed29b12c94d5f1964
+RUN git clone https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111 /content/stable-diffusion-webui/extensions/multidiffusion-upscaler-for-automatic1111 && cd /content/stable-diffusion-webui/extensions/multidiffusion-upscaler-for-automatic1111 && git reset --hard 23f3a14432e7740f4a59322ba36eafbf042dffb0
+
+RUN mkdir -p /etc/supervisor/conf.d && mkdir -p /content/supervisor
+# ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD entrypoint.sh /content/entrypoint.sh
+RUN chmod a+x /content/entrypoint.sh
+
+CMD ["/content/entrypoint.sh"]
