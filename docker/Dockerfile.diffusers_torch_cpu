@@ -4,10 +4,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && \
     apt install -y bash \
-    build-essential \
+    build-essential wget \
     git git-lfs vim curl \
     ca-certificates \
-    libsndfile1-dev \
+    libsndfile1-dev && \
     rm -rf /var/lib/apt/lists
 
 RUN cd /root && wget https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh -O miniconda.sh \
@@ -22,6 +22,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     torchaudio \
     --extra-index-url https://download.pytorch.org/whl/cpu && \
     pip install --no-cache-dir \
+    onnxruntime \
     accelerate \
     datasets \
     hf-doc-builder \
@@ -31,7 +32,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
     numpy \
     scipy \
     tensorboard \
-    transformers
+    transformers \
+    fastapi
 
 RUN pip install --no-cache-dir --upgrade diffusers
 

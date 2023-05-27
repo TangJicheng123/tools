@@ -1,0 +1,7 @@
+FROM ubuntu:latest 
+
+LABEL maintainer="tangjicheng <tangjch15@gmail.com>"
+
+RUN apt update && apt install -y nginx 
+
+CMD nginx
