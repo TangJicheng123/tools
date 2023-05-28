@@ -4,8 +4,14 @@ ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /root
 COPY ./run_sshd.sh /root/run_sshd.sh
 RUN chmod +x /root/run_sshd.sh 
+RUN mkdir -p /var/run/sshd 
+
+ARG PASSWORD
+RUN echo "root:${PASSWORD}" | chpasswd
 
 RUN apt update && \
     apt install -y vim openssh-server 
+
+EXPOSE 22
 
 CMD ["/root/run_sshd.sh"]
