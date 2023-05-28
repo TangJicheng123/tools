@@ -1,0 +1,7 @@
+FROM ubuntu:latest 
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt update && \
+    apt install -y vim curl apache2 
+
+CMD ["service", "apache2", "start"]

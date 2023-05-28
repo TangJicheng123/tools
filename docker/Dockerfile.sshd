@@ -1,0 +1,11 @@
+FROM ubuntu:latest 
+ENV DEBIAN_FRONTEND noninteractive
+
+WORKDIR /root
+COPY ./run_sshd.sh /root/run_sshd.sh
+RUN chmod +x /root/run_sshd.sh 
+
+RUN apt update && \
+    apt install -y vim openssh-server 
+
+CMD ["/root/run_sshd.sh"]
