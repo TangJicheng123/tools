@@ -9,6 +9,15 @@ wget https://civitai.com/api/download/models/79754 -O CyberRealistic.safetensors
 wget https://civitai.com/api/download/models/64094 -O NeverEndingDream.safetensors
 wget https://civitai.com/api/download/models/77903 -O XXMix_9realistic.safetensors
 wget https://civitai.com/api/download/models/70969 -O BreakDomain.safetensors
+wget https://civitai.com/api/download/models/64046 -O MeinaHentai.safetensors
+wget https://civitai.com/api/download/models/30163 -O AnythingV5.safetensors
+wget https://civitai.com/api/download/models/15236 -O Deliberate.safetensors
+wget https://civitai.com/api/download/models/46846 -O ReVAnimated.safetensors
+wget https://civitai.com/api/download/models/72396 -O Lyriel.safetensors
+wget https://civitai.com/api/download/models/17233 -O AbyssOrangeMix3.safetensors
+wget https://civitai.com/api/download/models/15640 -O UberRealisticPornMerge.safetensors
+wget https://civitai.com/api/download/models/34070 -O Clarity.safetensors
+wget https://civitai.com/api/download/models/56498 -O AnalogMadness.safetensors
 
 # Lora
 wget https://civitai.com/api/download/models/69243 -O lora_Ghibli_Background.safetensors
