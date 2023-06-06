@@ -19,3 +19,6 @@ wget https://civitai.com/api/download/models/78164 -O DreamShaper.safetensors
 
 # VAE
 wget https://civitai.com/api/download/models/28569 -O kl-f8-anime2-vae.ckpt
+
+# embeddings
+wget https://civitai.com/api/download/models/9208 -O EasyNegative.safetensors
