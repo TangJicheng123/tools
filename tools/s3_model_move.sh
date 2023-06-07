@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 迁移模型脚本，staging环境已经迁移
+# production环境S3，暂无权限，没有迁移
 env=staging
 # VAE
 aws s3 cp "s3://$env-g123-ai/sagemaker/model/diffusion_model/pretrained_model/vae/kl-f8-anime2.vae.pt" "s3://$env-g123-ai/sagemaker/model/diffusion_model/deploy/VAE/"
@@ -18,6 +20,9 @@ aws s3 cp "s3://$env-g123-ai/sagemaker/model/diffusion_model/pretrained_model/ba
 # ControlNet
 aws s3 cp "s3://$env-g123-ai/sagemaker/model/diffusion_model/pretrained_model/Artifex_Controlnet/control_v11p_sd15_canny.yaml" "s3://$env-g123-ai/sagemaker/model/diffusion_model/deploy/ControlNet/"
 aws s3 cp "s3://$env-g123-ai/sagemaker/model/diffusion_model/pretrained_model/Artifex_Controlnet/control_v11p_sd15_canny.pth" "s3://$env-g123-ai/sagemaker/model/diffusion_model/deploy/ControlNet/"
+# Pose ControlNet
+aws s3 cp "s3://$env-g123-ai/sagemaker/model/diffusion_model/pretrained_model/Artifex_Controlnet/control_v11p_sd15_normalbae.pth" "s3://$env-g123-ai/sagemaker/model/diffusion_model/deploy/ControlNet/"
+aws s3 cp "s3://$env-g123-ai/sagemaker/model/diffusion_model/pretrained_model/Artifex_Controlnet/control_v11p_sd15_normalbae.yaml" "s3://$env-g123-ai/sagemaker/model/diffusion_model/deploy/ControlNet/"
 
 # LoRA
 # Character
@@ -30,3 +35,5 @@ aws s3 cp "s3://$env-g123-ai/sagemaker/model/diffusion_model/pretrained_model/Lo
 # Icon
 aws s3 cp "s3://$env-g123-ai/sagemaker/model/diffusion_model/pretrained_model/Lora/Style/okashi-gstyle.safetensors"  "s3://$env-g123-ai/sagemaker/model/diffusion_model/deploy/Lora/"
 aws s3 cp "s3://$env-g123-ai/sagemaker/model/diffusion_model/pretrained_model/Lora/Style/tsukisima-ystyle.safetensors"  "s3://$env-g123-ai/sagemaker/model/diffusion_model/deploy/Lora/"
+# Pose
+aws s3 cp "s3://$env-g123-ai/sagemaker/model/diffusion_model/pretrained_model/Lora/Style/hipoly_3dcg.safetensors" "s3://$env-g123-ai/sagemaker/model/diffusion_model/deploy/Lora/"
