@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-manual
+  labels:
+    name: simple-manual
+spec:
+  containers:
+  - name: simple-manual
+    image: tang2432/simple_server:v1
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8000

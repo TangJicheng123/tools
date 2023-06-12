@@ -1,0 +1,109 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2023-06-09T06:01:45Z"
+  generateName: simple-http-
+  labels:
+    app: simple
+  name: simple-http-plzrx
+  namespace: default
+  ownerReferences:
+  - apiVersion: v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicationController
+    name: simple-http
+    uid: e7879cbb-6d58-4de0-9bbc-63fd44d992b3
+  resourceVersion: "56234"
+  uid: 70f85d38-f9bd-40ed-b2e4-b0b3f60389bf
+spec:
+  containers:
+  - image: tang2432/simple_server:v1
+    imagePullPolicy: IfNotPresent
+    name: simple
+    ports:
+    - containerPort: 8000
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-qtgnx
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: minikube
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-qtgnx
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-06-09T06:01:45Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-06-09T06:01:47Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-06-09T06:01:47Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-06-09T06:01:45Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://d2cc748b58bcff29d0818c52b80b4b09732b7b92fa634654171db4dd3d9b6494
+    image: tang2432/simple_server:v1
+    imageID: docker-pullable://tang2432/simple_server@sha256:b543f2e6f86969454af1e0f5840c777fd26927fba26a314752589988550939c3
+    lastState: {}
+    name: simple
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2023-06-09T06:01:46Z"
+  hostIP: 192.168.49.2
+  phase: Running
+  podIP: 10.244.0.59
+  podIPs:
+  - ip: 10.244.0.59
+  qosClass: BestEffort
+  startTime: "2023-06-09T06:01:45Z"
