@@ -16,6 +16,8 @@ wget https://civitai.com/api/download/models/34070 -O Clarity.safetensors
 wget https://civitai.com/api/download/models/56498 -O AnalogMadness.safetensors
 wget https://civitai.com/api/download/models/11745 -O ChilloutMix.safetensors
 wget https://civitai.com/api/download/models/78164 -O DreamShaper.safetensors
+wget https://civitai.com/api/download/models/27392 -O Openjourney.ckpt
+wget https://civitai.com/api/download/models/85979 -O asian_girl.ckpt
 
 # VAE
 wget https://civitai.com/api/download/models/28569 -O kl-f8-anime2-vae.ckpt
