@@ -3,6 +3,7 @@ log/
 .ipynb_checkpoints
 *.jpg 
 *.png 
+*.onnx
 
 # Prerequisites
 *.d
