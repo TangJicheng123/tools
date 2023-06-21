@@ -1,3 +1,5 @@
+python read_test3.py --path /s3/mount/sagemaker/model/diffusion_model/deploy/Stable-diffusion --task 4
+
 [process 3] file [artifex-auo-ingris02-cardos.safetensors] read time: 11.65 seconds, size: 2033.830132484436 MB
 [process 1] file [artifex-auo-ingris-cardos.safetensors] read time: 12.88 seconds, size: 2033.830132484436 MB
 [process 0] file [Lyriel-1.5.safetensors] read time: 15.75 seconds, size: 2033.830138206482 MB
