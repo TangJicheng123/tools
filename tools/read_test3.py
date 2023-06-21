@@ -2,33 +2,42 @@ import os
 import time
 import argparse
 import sys
+import multiprocessing
 
-def read_file(filename):
+def read_file(filename, k):
     start_time = time.time()
-    if os.path.basename(filename) == "Lyriel-1.5.safetensors":
-        return None
     # Read file content into memory
     with open(filename, 'rb', buffering=200*1024*1024) as file:
         content = file.read()
     file_size = sys.getsizeof(content)
     end_time = time.time()
     read_time = end_time - start_time
-    print(f"file [{os.path.basename(filename)}] read time: {read_time:.2f} seconds, size: {file_size / (1024*1024)} MB")
+    print(f"[process {k}] file [{os.path.basename(filename)}] read time: {read_time:.2f} seconds, size: {file_size / (1024*1024)} MB")
     return read_time
 
-def read_files_in_folder(folder_path):
-    for filename in os.listdir(folder_path):
+def read_files_in_folder(folder_path, k, N):
+    for filename in os.listdir(folder_path)[k::N]:
         full_filepath = os.path.join(folder_path, filename)
         if os.path.isfile(full_filepath):
-            read_file(full_filepath)
+            read_file(full_filepath, k)
 
 if __name__ == "__main__":
     # Create argument parser
     parser = argparse.ArgumentParser(description='File Read Time Test')
     # Add file path argument
     parser.add_argument('--path', type=str, help='Path of the file to read')
+    parser.add_argument('--task', type=int, help='Numbers of processes')
     # Parse command-line arguments
     args = parser.parse_args()
-
+    N = args.task
     folder_path = args.path
-    read_files_in_folder(folder_path)
+
+    processes = []
+    for k in range(N):
+        p = multiprocessing.Process(target=read_files_in_folder, args=(folder_path, k, N))
+        processes.append(p)
+        p.start()
+        read_files_in_folder(folder_path)
+
+    for p in processes:
+        p.join()

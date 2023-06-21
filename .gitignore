@@ -90,7 +90,11 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
-
+core.*
+*.json 
+*.trt
+*.pt 
+*.txt
 # Translations
 *.mo
 *.pot

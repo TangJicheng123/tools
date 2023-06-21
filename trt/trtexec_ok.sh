@@ -1,0 +1,1 @@
+trtexec --fp16 --onnx=controlnet_sim_dy2.onnx --minShapes=x:2x4x32x32,hint:1x3x256x256 --optShapes=x:2x4x64x64,hint:1x3x512x512 --maxShapes=x:2x4x64x64,hint:1x3x512x512 --saveEngine=./controlnet_sim_dy2_ok.trt
