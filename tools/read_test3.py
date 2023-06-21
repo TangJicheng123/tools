@@ -7,7 +7,7 @@ import multiprocessing
 def read_file(filename, k):
     start_time = time.time()
     # Read file content into memory
-    with open(filename, 'rb', buffering=200*1024*1024) as file:
+    with open(filename, 'rb') as file:
         content = file.read()
     file_size = sys.getsizeof(content)
     end_time = time.time()
