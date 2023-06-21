@@ -22,12 +22,11 @@ def read_files_in_folder(folder_path, k, N):
             read_file(full_filepath, k)
 
 if __name__ == "__main__":
-    # Create argument parser
+    # usage: python this.py --path /your/file/path --task numbers_of_processes
+
     parser = argparse.ArgumentParser(description='File Read Time Test')
-    # Add file path argument
     parser.add_argument('--path', type=str, help='Path of the file to read')
     parser.add_argument('--task', type=int, help='Numbers of processes')
-    # Parse command-line arguments
     args = parser.parse_args()
     N = args.task
     folder_path = args.path
@@ -37,7 +36,6 @@ if __name__ == "__main__":
         p = multiprocessing.Process(target=read_files_in_folder, args=(folder_path, k, N))
         processes.append(p)
         p.start()
-        read_files_in_folder(folder_path)
 
     for p in processes:
         p.join()
