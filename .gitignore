@@ -1,4 +1,5 @@
 log/
+mlruns/
 
 .ipynb_checkpoints
 *.jpg 
