@@ -2,8 +2,9 @@ log/
 mlruns/
 
 .ipynb_checkpoints
-*.jpg 
-*.png 
+*.jpg
+*.jpeg
+*.png
 *.onnx
 
 # Prerequisites
