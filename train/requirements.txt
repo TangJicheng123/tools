@@ -6,3 +6,8 @@ transformers>=4.25.1
 ftfy
 tensorboard
 Jinja2
+bitsandbytes
+scipy
+modelcards
+safetensors
+datasets
