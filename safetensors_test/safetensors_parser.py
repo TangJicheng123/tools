@@ -4,16 +4,6 @@ import sys
 import functools
 import operator
 
-def shape2size(shape):
-    size = 1
-    for iter in shape:
-        if iter <= 0:
-            print("some shape <= 0")
-            continue
-        else:
-            size *= iter
-    return size
-
 def parse_safetensors(safetensors_model, output_json):
     with open(safetensors_model, 'rb') as f:
         byte_data = f.read(8)  # read 8 bytes for unsigned int64
