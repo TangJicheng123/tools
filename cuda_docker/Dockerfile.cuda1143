@@ -1,0 +1,69 @@
+FROM nvidia/cuda:11.4.3-devel-ubuntu20.04 AS devel-base
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update -y && \
+    apt-get install -y apache2
+
+RUN apt-get update -y && apt-get upgrade -y \
+    && apt-get install -y libgl1 libglib2.0-0 wget git \
+    unzip curl vim\
+    git-lfs google-perftools libgoogle-perftools-dev\
+    supervisor ffmpeg libsm6 libxext6 \
+    clang \
+    build-essential \
+    libssl-dev \
+    default-libmysqlclient-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /opt && chmod 777 -R /opt
+
+# download aws cli
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip -q awscliv2.zip
+RUN ./aws/install
+
+RUN adduser --disabled-password --gecos '' user
+RUN mkdir /content && chown -R user:user /content
+
+WORKDIR /content
+USER user
+
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh -O Miniconda3.sh && \
+    chmod +x Miniconda3.sh && \
+    mkdir -p /opt && \
+    ./Miniconda3.sh -b -p /opt/conda && \
+    rm -f ./Miniconda3.sh
+
+ENV PATH="/opt/conda/bin:$PATH"
+
+RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git \
+    && cd stable-diffusion-webui \
+    && git checkout v1.3.0
+
+# add stable diffusion webui extensions
+RUN cd /content/stable-diffusion-webui/extensions && \
+    git clone https://github.com/Mikubill/sd-webui-controlnet && \
+    cd /content/stable-diffusion-webui/extensions/sd-webui-controlnet && \
+    git reset --hard a8bf0c3901c8c37f8ffc921f0345a86c922f7a58
+
+RUN cd /content/stable-diffusion-webui/extensions && \
+    git clone https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111 && \
+    cd /content/stable-diffusion-webui/extensions/multidiffusion-upscaler-for-automatic1111 && \
+    git reset --hard 23f3a14432e7740f4a59322ba36eafbf042dffb0
+
+RUN cd /content/stable-diffusion-webui/extensions && \
+    git clone https://github.com/hako-mikan/sd-webui-lora-block-weight.git && \
+    cd /content/stable-diffusion-webui/extensions/sd-webui-lora-block-weight && \
+    git reset --hard 574493d83ebddb2f69f9244159a6b322bd613d85
+
+RUN cd /content/stable-diffusion-webui/extensions && \
+    git clone https://github.com/toriato/stable-diffusion-webui-wd14-tagger.git && \
+    cd /content/stable-diffusion-webui/extensions/stable-diffusion-webui-wd14-tagger && \
+    git reset --hard 3ba3a7356447e91c15ffb6d01ca61f878a2292a8
+
+RUN cd /content/stable-diffusion-webui/extensions && \
+    git clone https://github.com/Bing-su/adetailer.git && \
+    cd /content/stable-diffusion-webui/extensions/adetailer && \
+    git reset --hard 764242520cbba9c67f5a089d7baa8d04efa0df56
+
+CMD ["/bin/bash"]
