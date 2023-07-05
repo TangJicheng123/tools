@@ -40,6 +40,18 @@ RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git \
     && cd stable-diffusion-webui \
     && git checkout v1.3.0
 
+# replace code in stable diffusion webui
+RUN rm -rf /content/stable-diffusion-webui/modules/sd_models.py && \
+    rm -rf /content/stable-diffusion-webui/modules/hashes.py && \
+    rm -rf /content/stable-diffusion-webui/modules/api/api.py
+
+ADD --chown=user:user webui/sd_models.py /content/stable-diffusion-webui/modules/sd_models.py
+ADD --chown=user:user webui/hashes.py /content/stable-diffusion-webui/modules/hashes.py
+ADD --chown=user:user webui/api/api.py /content/stable-diffusion-webui/modules/api/api.py
+ADD --chown=user:user webui/api/api_log.py /content/stable-diffusion-webui/modules/api/api_log.py
+
+ADD --chown=user:user sd_ui_settings_config.json /content/sd_ui_settings_config.json
+
 # add stable diffusion webui extensions
 RUN cd /content/stable-diffusion-webui/extensions && \
     git clone https://github.com/Mikubill/sd-webui-controlnet && \
