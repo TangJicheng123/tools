@@ -1,6 +1,5 @@
 wget https://civitai.com/api/download/models/30163 -O AnythingV5.safetensors
 wget https://civitai.com/api/download/models/72396 -O Lyriel.safetensors
-wget https://civitai.com/api/download/models/76907 -O GhostMix.safetensors
 wget https://civitai.com/api/download/models/79068 -O majicMIX_realistic.safetensors
 wget https://civitai.com/api/download/models/80511 -O MeinaMix.safetensors
 wget https://civitai.com/api/download/models/79754 -O CyberRealistic.safetensors
