@@ -1,5 +1,6 @@
 log/
 mlruns/
+backup/
 
 *.ipynb
 *.safetensors
