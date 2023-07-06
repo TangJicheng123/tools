@@ -14,3 +14,5 @@ accelerate launch train_dreambooth_diffusers.py \
   --lr_scheduler="constant" \
   --lr_warmup_steps=0 \
   --max_train_steps=400
+
+python diffusers2webui.py -i /home/ec2-user/tools/train/dog_model -o /home/ec2-user/models/sd_models/dog.safetensors
