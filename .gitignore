@@ -1,6 +1,7 @@
 log/
 mlruns/
 
+*.ipynb
 *.safetensors
 *.ipynb_checkpoints
 *.jpg
