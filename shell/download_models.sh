@@ -14,3 +14,4 @@ wget https://civitai.com/api/download/models/109123 -O DreamShaper.safetensors
 wget https://civitai.com/api/download/models/28569 -O kl-f8-anime2-vae.ckpt
 
 # Lora
+wget https://civitai.com/api/download/models/44566 -O lora_hand_hipoly_3d.safetensors
