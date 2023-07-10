@@ -2,6 +2,7 @@ log/
 mlruns/
 backup/
 
+*.mp4
 *.ipynb
 *.safetensors
 *.ipynb_checkpoints
