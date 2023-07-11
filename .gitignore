@@ -2,6 +2,7 @@ log/
 mlruns/
 backup/
 
+*.mp3
 *.mp4
 *.ipynb
 *.safetensors
