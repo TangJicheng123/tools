@@ -73,7 +73,7 @@ class TritonPythonModel:
         for request in requests:
             # Get INPUT
             image_str = pb_utils.get_input_tensor_by_name(request, "image_str")
-            print(f"image_str: {type(image_str)}, {image_str}")
+            self.logger.log_info(f"image_str: {type(image_str)}, {image_str}")
 
             # Create output tensors. You need pb_utils.Tensor
             # objects to create pb_utils.InferenceResponse.
@@ -81,8 +81,10 @@ class TritonPythonModel:
             # out_tensor_0 = pb_utils.Tensor(
             #     "output_tensor", output_tensor.astype(self.output0_dtype)
             # )
-            out_tensor_0 = "Hello, " + image_str
+            # out_tensor_0 = "Hello, " + image_str
+            out_tensor_0 = np.array([2], dtype=np.int32)
 
+            self.logger.log_info("after Hello+")
             # Create InferenceResponse. You can set an error here in case
             # there was a problem with handling this inference request.
             # Below is an example of how you can set errors in inference
@@ -95,7 +97,6 @@ class TritonPythonModel:
                 output_tensors=[out_tensor_0]
             )
             responses.append(inference_response)
-            
 
         # You should return a list of pb_utils.InferenceResponse. Length
         # of this list must match the length of `requests` list.

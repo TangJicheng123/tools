@@ -3,7 +3,7 @@ backend: "python"
 max_batch_size: 0
 input [
   {
-    name: "image_str"
+    name: "input_str"
     data_type: TYPE_STRING
     dims: [ 1 ]
   }
@@ -12,7 +12,7 @@ input [
 
 output [
   {
-    name: "output_tensor"
+    name: "output_str"
     data_type: TYPE_STRING
     dims: [ 1 ]
   }
