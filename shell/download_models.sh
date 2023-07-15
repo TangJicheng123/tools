@@ -16,3 +16,6 @@ wget https://civitai.com/api/download/models/28569 -O kl-f8-anime2-vae.ckpt
 # Lora
 wget https://civitai.com/api/download/models/44566 -O lora_hand_hipoly_3d.safetensors
 wget https://civitai.com/api/download/models/62833 -O lora_add_detail.safetensors
+
+# embedding
+wget https://civitai.com/api/download/models/25820 -O verybadimagenegative_v1.3.ckpt
