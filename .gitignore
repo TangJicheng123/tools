@@ -3,6 +3,7 @@ log/
 mlruns/
 backup/
 
+*.gif
 *.mp3
 *.mp4
 *.ipynb
