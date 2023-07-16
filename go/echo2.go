@@ -1,3 +1,4 @@
+// Echo2 prints its command-line arguments.
 package main
 
 import (
@@ -6,7 +7,7 @@ import (
 )
 
 func main() {
-	var s, sep string
+	s, sep := "", ""
 	for _, arg := range os.Args[1:] {
 		s += sep + arg
 		sep = " "
