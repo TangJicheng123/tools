@@ -5,17 +5,19 @@ import (
 	"time"
 )
 
-func print1(s int, c chan int) {
-	now := time.Now()
-	fmt.Println(s, now)
-	c <- s
+func printNumber(num int, ch chan<- bool) {
+	fmt.Printf("[%s] %d\n", time.Now().Format("15:04:05"), num)
+	ch <- true
 }
 
-func t1() {
-	c1 := make(chan int)
-	c2 := make(chan int)
-	go print1(11, c1)
-	go print1(22, c2)
-	<-c2
-	<-c1
+func t1(N int) {
+	ch := make(chan bool)
+
+	for i := 1; i <= N; i++ {
+		go printNumber(i, ch)
+	}
+
+	for i := 1; i <= N; i++ {
+		<-ch
+	}
 }
