@@ -9,7 +9,7 @@ var x int = 2
 // syntax error: non-declaration statement outside function body
 // y := 3
 
-func main() {
+func My1() {
 	// var a = 1
 	// b := 1.1
 	// fmt.Printf("%d %d %.4f\n", a, x, b)

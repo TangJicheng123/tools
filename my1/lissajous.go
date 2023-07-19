@@ -19,7 +19,7 @@ const (
 	blackIndex = 1 // next color in palette
 )
 
-func main() {
+func Lissajous() {
 	// The sequence of images is deterministic unless we seed
 	// the pseudo-random number generator using the current time.
 	// Thanks to Randall McPherson for pointing out the omission.
