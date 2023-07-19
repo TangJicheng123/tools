@@ -6,4 +6,5 @@ import (
 
 func main() {
 	fmt.Println("Start main func...")
+	t1()
 }
