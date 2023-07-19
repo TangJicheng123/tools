@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	fmt.Println("Main func")
+	fmt.Println("Start main func...")
 }
