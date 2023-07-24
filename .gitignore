@@ -1,3 +1,6 @@
+*.txt
+!requirements.txt
+
 test
 go/bin/
 log/
@@ -100,10 +103,9 @@ coverage.xml
 .pytest_cache/
 cover/
 core.*
-*.json 
+*.json
 *.trt
-*.pt 
-*.txt
+*.pt
 # Translations
 *.mo
 *.pot
