@@ -53,7 +53,7 @@ func setupRouter() *gin.Engine {
 	return r
 }
 
-func main() {
+func main1() {
 	// 添加数据
 	db["a1"] = "hello"
 	db["b2"] = "good"
@@ -61,4 +61,35 @@ func main() {
 	r := setupRouter()
 	// 启动服务器并监听 8080 端口
 	r.Run(":8080")
+}
+
+func main2() {
+	// 创建gin引擎
+	r := gin.Default()
+
+	// 定义根路由
+	r.GET("/", func(c *gin.Context) {
+		c.String(200, "Hello, this is the root path!")
+	})
+
+	// 定义路由组"/api"
+	apiGroup := r.Group("/api")
+	{
+		// 在/api中定义GET请求的路由
+		apiGroup.GET("/users", func(c *gin.Context) {
+			c.String(200, "List of users")
+		})
+
+		// 在/api中定义POST请求的路由
+		apiGroup.POST("/user", func(c *gin.Context) {
+			c.String(200, "Create a user")
+		})
+	}
+
+	// 启动服务
+	r.Run(":8080")
+}
+
+func main() {
+	main2()
 }
