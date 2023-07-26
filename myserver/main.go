@@ -24,6 +24,20 @@ func nameValue(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": state, "user": user, "value": value})
 }
 
+func adminFunc(c *gin.Context) {
+	user := c.MustGet(gin.AuthUserKey).(string)
+
+	// 解析并验证 JSON 格式请求数据
+	var json struct {
+		Value string `json:"value" binding:"required"`
+	}
+
+	if c.Bind(&json) == nil {
+		db[user] = json.Value
+		c.JSON(http.StatusOK, gin.H{"status": "ok"})
+	}
+}
+
 func setupRouter() *gin.Engine {
 	// 初始化 Gin 框架默认实例，该实例包含了路由、中间件以及配置信息
 	r := gin.Default()
@@ -41,19 +55,7 @@ func setupRouter() *gin.Engine {
 	}))
 
 	// 保存用户信息路由
-	authorized.POST("admin", func(c *gin.Context) {
-		user := c.MustGet(gin.AuthUserKey).(string)
-
-		// 解析并验证 JSON 格式请求数据
-		var json struct {
-			Value string `json:"value" binding:"required"`
-		}
-
-		if c.Bind(&json) == nil {
-			db[user] = json.Value
-			c.JSON(http.StatusOK, gin.H{"status": "ok"})
-		}
-	})
+	authorized.POST("admin", adminFunc)
 
 	return r
 }
