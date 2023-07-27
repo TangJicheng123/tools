@@ -1,3 +1,5 @@
+myserver
+
 *.txt
 !requirements.txt
 
