@@ -38,7 +38,7 @@ type user struct {
 
 func userHandler(c *gin.Context) {
 	id := c.Param("id")
-	fmt.Println("[my]", id)
+	fmt.Println("[my]", id, "ip: ", c.ClientIP())
 	idInt, err := strconv.Atoi(id)
 	httpCode := http.StatusOK
 	if err != nil {
