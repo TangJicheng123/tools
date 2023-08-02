@@ -1,0 +1,14 @@
+base_job_name: accelerate-sagemaker-1
+compute_environment: AMAZON_SAGEMAKER
+distributed_type: DATA_PARALLEL
+ec2_instance_type: ml.p3.16xlarge
+gpu_ids: all
+iam_role_name: arn:aws:iam::#TODO:role/#TODO
+mixed_precision: fp16
+num_machines: 2
+py_version: py38
+pytorch_version: 1.10.2
+region: ap-northeast-1
+sagemaker_inputs_file: ''
+transformers_version: 4.17.0
+use_cpu: false
