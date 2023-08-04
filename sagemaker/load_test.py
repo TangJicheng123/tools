@@ -4,7 +4,7 @@ import glob
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 Image.MAX_IMAGE_PIXELS = None
 from tqdm.auto import tqdm
-
+import os
 
 def load_dataset(data_dir):
     """
@@ -17,10 +17,10 @@ def load_dataset(data_dir):
         cond_img_path = txt_path.replace('_canny_short.txt', '_canny.jpg')
         long_txt_path = txt_path.replace('_canny_short.txt', '.txt')
 
-        with open(txt_path, 'r') as file:
+        with open(txt_path, 'r', buffering=20*1024*1024) as file:
             short_prompt = file.read().rstrip()
                 
-        with open(long_txt_path, 'r') as file:
+        with open(long_txt_path, 'r', buffering=20*1024*1024) as file:
             long_prompt = file.read().rstrip()
             
         if not os.path.exists(img_path) or not os.path.exists(cond_img_path):
@@ -45,4 +45,4 @@ def get_id_res_map(entries):
 
 
 
-entries = load_dataset('s3://staging-g123-ai/sagemaker/datasets/anime-image/train_data/canny_250k/princess')
+entries = load_dataset('/home/ec2-user/SageMaker/s4mount/staging-g123-ai/sagemaker/datasets/anime-image/train_data/canny_250k/princess')
