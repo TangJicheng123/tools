@@ -10,15 +10,12 @@ print(f"[{datetime.datetime.now()}] dp_s3_urls: {dp_s3_urls}")
 # https://pytorch.org/data/main/tutorial.html#working-with-dataloader
 sharded_s3_urls = dp_s3_urls.shuffle().sharding_filter()
 
-dp_s3_files = S3FileLoader(sharded_s3_urls)
 i = 0
-# for url, fd in dp_s3_files: # Start loading data
-#     data = fd.read()
 
 print(f"[{datetime.datetime.now()}] Functional API")
 print(f"sharded_s3_urls.load_files_by_s3: {sharded_s3_urls.load_files_by_s3}")
 # Functional API
-dp_s3_files = sharded_s3_urls.load_files_by_s3(buffer_size=256)
+dp_s3_files = sharded_s3_urls.load_files_by_s3()
 for url, fd in dp_s3_files:
     data = fd.read()
     i += 1
