@@ -3,8 +3,8 @@ import transformers
 from transformers import BloomForCausalLM
 from transformers import BloomTokenizerFast
 
-model = BloomForCausalLM.from_pretrained("bigscience/bloom-1b3")
-tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloom-1b3")
+model = BloomForCausalLM.from_pretrained("bigscience/bloom-1b1")
+tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloom-1b1")
 
 prompt = "It was a dark and stormy night"
 result_length = 50
