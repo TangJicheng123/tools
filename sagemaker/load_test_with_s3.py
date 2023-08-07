@@ -20,5 +20,4 @@ dp_s3_files = sharded_s3_urls.load_files_by_s3(buffer_size=256)
 for url, fd in dp_s3_files:
     data = fd.read()
     i += 1
-    if i % 100 == 0:
-        print(f"i: {i}")
+    print(f"i: {i}")
