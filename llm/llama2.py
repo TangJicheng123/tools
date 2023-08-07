@@ -2,14 +2,17 @@ from transformers import AutoTokenizer
 import transformers
 import torch
 
+cache_dir = "./cache"
+
 model = "meta-llama/Llama-2-7b-chat-hf"
 
-tokenizer = AutoTokenizer.from_pretrained(model)
+tokenizer = AutoTokenizer.from_pretrained(model, cache_dir=cache_dir)
 pipeline = transformers.pipeline(
     "text-generation",
     model=model,
     torch_dtype=torch.float16,
     device_map="auto",
+    cache_dir=cache_dir,
 )
 
 sequences = pipeline(
