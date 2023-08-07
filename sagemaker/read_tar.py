@@ -3,6 +3,7 @@ import time
 import tarfile
 
 def extract_tar_files(archive_filename):
+    i = 0
     try:
         with tarfile.open(archive_filename, 'r') as tar:
             for member in tar.getmembers():
@@ -11,7 +12,8 @@ def extract_tar_files(archive_filename):
                     file_data = tar.extractfile(member)
                     if file_data:
                         content = file_data.read()
-                        print(f"File name: {member.name}")
+                        i += 1
+                        print(f"[{i}] File name: {member.name}")
                         # print(f"Content:\n{content}\n")
     except tarfile.TarError as e:
         print(f"Error while extracting the tar file: {e}")
