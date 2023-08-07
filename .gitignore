@@ -1,8 +1,7 @@
-/myserver/myserver
-
 *.txt
 !requirements.txt
 
+cache
 test
 go/bin/
 log/
