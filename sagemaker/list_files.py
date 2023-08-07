@@ -1,6 +1,6 @@
 from torchdata.datapipes.iter import IterableWrapper, S3FileLister
 
-s3_prefixes = IterableWrapper(['s3://staging-g123-ai/staging-g123-ai/sagemaker/datasets/anime-image/train_data/canny_250k/princess/'])
+s3_prefixes = IterableWrapper(['s3://staging-g123-ai/staging-g123-ai/sagemaker/datasets/anime-image/train_data/canny_250k/princess'])
 
 dp_s3_urls = S3FileLister(s3_prefixes)
 for d in dp_s3_urls:

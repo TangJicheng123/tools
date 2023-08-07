@@ -10,8 +10,12 @@ sharded_s3_urls = dp_s3_urls.shuffle().sharding_filter()
 dp_s3_files = S3FileLoader(sharded_s3_urls)
 for url, fd in dp_s3_files: # Start loading data
     data = fd.read()
+    print(data)
+
+print("****2****")
 
 # Functional API
 dp_s3_files = sharded_s3_urls.load_files_by_s3(buffer_size=256)
 for url, fd in dp_s3_files:
     data = fd.read()
+    print(data)
