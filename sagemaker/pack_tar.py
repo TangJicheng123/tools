@@ -1,5 +1,5 @@
 import os
-from webdataset import TarWriter
+from webdataset import TarWriter, ShardWriter
 from tqdm.auto import tqdm
 from PIL import Image
 from PIL import ImageFile
@@ -18,7 +18,7 @@ def pack_tar():
     data_dir = "/home/ec2-user/SageMaker/pricenss"
     output_tar = "/home/ec2-user/SageMaker/pricenss_pack/%08d.tar"
     iter_id = 0
-    tar_id = 0
+    tar_stream = ShardWriter(output_tar, maxcount=1024)
     for txt_path in tqdm(glob.glob(f"{data_dir}/*_canny_short.txt"), desc=f"Loading image and captions"):
         img_path = txt_path.replace('_canny_short.txt', '.jpg')
         cond_img_path = txt_path.replace('_canny_short.txt', '_canny.jpg')
@@ -50,14 +50,8 @@ def pack_tar():
             "sample_id": str(sample_id),
         }
 
-        tar_filename = output_tar % tar_id
-        tar_stream = TarWriter(tar_filename)
         tar_stream.write(sample)
-        tar_stream.close()
-
         iter_id += 1
-        if iter_id % 1024 == 0:
-            tar_id += 1
 
 if __name__ == "__main__":
     pack_tar()
