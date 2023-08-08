@@ -39,8 +39,6 @@ def pack_tar():
         with open(cond_img_path, 'rb') as file:
             cond_img = file.read()
 
-        print(f"[type] short_prompt:{type(short_prompt)}, cond_img: {type(cond_img)}")
-
         sample_id = extract_numbers_from_string(txt_path)
 
         sample = {
