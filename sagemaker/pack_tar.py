@@ -1,10 +1,4 @@
 import os
-import random
-import datetime
-from multiprocessing import Process
-from torchvision import datasets
-from torchvision.datasets import ImageNet
-from torchvision.datasets.folder import ImageFolder
 from webdataset import TarWriter
 from tqdm.auto import tqdm
 from PIL import Image
