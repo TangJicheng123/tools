@@ -44,12 +44,12 @@ def pack_tar():
         sample_id = extract_numbers_from_string(txt_path)
 
         sample = {
-            "__key__": iter_id,
+            "__key__": str(iter_id),
             "short_prompt": short_prompt,
             "long_prompt": long_prompt,
-            "img": img,
-            "cond_img": cond_img,
-            "sample_id": sample_id,
+            "img.jpg": img,
+            "cond_img.jpg": cond_img,
+            "sample_id": str(sample_id),
         }
 
         tar_filename = output_tar % tar_id
