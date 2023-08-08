@@ -44,5 +44,8 @@ def get_id_res_map(entries):
     return id_res_map
 
 
-entries = load_dataset(
-    '/home/ec2-user/SageMaker/s3mount/sagemaker/datasets/anime-image/train_data/canny_250k/princess')
+# entries1 = load_dataset(
+#     '/home/ec2-user/SageMaker/s3mount/sagemaker/datasets/anime-image/train_data/canny_250k/princess')
+
+entries2 = load_dataset(
+    '/home/ec2-user/SageMaker/pricenss')
