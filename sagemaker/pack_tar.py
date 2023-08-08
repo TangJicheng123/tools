@@ -53,6 +53,7 @@ def pack_tar():
         tar_filename = output_tar % tar_id
         tar_stream = TarWriter(tar_filename)
         tar_stream.write(sample)
+        tar_stream.close()
 
         iter_id += 1
         if iter_id % 1024 == 0:
