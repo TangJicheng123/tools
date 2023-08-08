@@ -1,1 +1,3 @@
 torchdata
+webdataset
+Pillow
