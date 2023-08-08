@@ -16,7 +16,7 @@ def extract_numbers_from_string(input_string):
 
 def pack_tar():
     data_dir = "/home/ec2-user/SageMaker/pricenss"
-    output_tar = "/home/ec2-user/SageMaker/pricenss_pack/%08.tar"
+    output_tar = "/home/ec2-user/SageMaker/pricenss_pack/%08d.tar"
     iter_id = 0
     tar_id = 0
     for txt_path in tqdm(glob.glob(f"{data_dir}/*_canny_short.txt"), desc=f"Loading image and captions"):
