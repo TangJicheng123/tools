@@ -1,6 +1,6 @@
 local_url = "/home/ec2-user/SageMaker/pricenss_pack/{00000000..00000046}.tar"
 
-s3_url = "pipe:aws s3 cp s3://staging-g123-ai/users/tangjicheng/data/{00000000..00000046}.tar"
+s3_url = "pipe:aws s3 cp s3://staging-g123-ai/users/tangjicheng/data/{00000000..00000046}.tar -"
 
 import time
 import datetime
