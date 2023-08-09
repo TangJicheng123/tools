@@ -2,24 +2,21 @@ package main
 
 import "fmt"
 
-type Base struct{}
-
-func (base *Base) Run() {
-	fmt.Println("Base Run")
-}
-
 type A struct {
-	Base
+	x int
+	y string
 }
 
-func (a *A) Run() {
-	fmt.Println("A run")
+func (a *A) Serialize() string {
+	s := fmt.Sprintf("{\"x\":%d, \"y\":\"%s\"}", a.x, a.y)
+	return s
 }
 
 func main1() {
 	a := A{
-		Base: Base{},
+		x: 123,
+		y: "hello",
 	}
-	a.Base.Run()
-	a.Run()
+	s := a.Serialize()
+	fmt.Println(s)
 }

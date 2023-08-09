@@ -2,12 +2,14 @@ package main
 
 import "fmt"
 
+func sum(x ...int) int {
+	ret := 0
+	for _, v := range x {
+		ret += v
+	}
+	return ret
+}
+
 func main2() {
-	slice1 := make([]int, 0, 10)
-	for i := 0; i < 10; i++ {
-		slice1 = append(slice1, i)
-	}
-	for i, v := range slice1 {
-		fmt.Printf("[%d] value: %d\n", i, v)
-	}
+	fmt.Println(sum(1, 2, 3, 4, 5, 6, 7, 8, 9))
 }
