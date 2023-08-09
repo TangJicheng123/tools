@@ -8,7 +8,7 @@ from tqdm.auto import tqdm
 
 def get_wds_loader():
     dataset = wds.WebDataset(url)
-    dataloader = DataLoader(dataset, batch_size=8)
+    dataloader = DataLoader(dataset, batch_size=8, num_workers=4)
     return dataloader
 
 loader = get_wds_loader()
