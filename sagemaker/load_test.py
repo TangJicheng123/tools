@@ -29,6 +29,12 @@ def load_dataset(data_dir):
         if not os.path.exists(img_path) or not os.path.exists(cond_img_path):
             continue
 
+        with open(img_path, 'rb') as file:
+            img = file.read()
+
+        with open(cond_img_path, 'rb') as file:
+            cond_img = file.read()
+
         entry = (img_path, cond_img_path, short_prompt, long_prompt)
         # entries.append(entry)
         entries[txt_path] = entry

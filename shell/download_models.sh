@@ -9,6 +9,10 @@ wget https://civitai.com/api/download/models/15640 -O UberRealisticPornMerge.saf
 wget https://civitai.com/api/download/models/34070 -O Clarity.safetensors
 wget https://civitai.com/api/download/models/11745 -O ChilloutMix.safetensors
 wget https://civitai.com/api/download/models/109123 -O DreamShaper.safetensors
+wget https://civitai.com/api/download/models/113623 -O LEOSAM_MoonFilm.safetensors
+wget https://civitai.com/api/download/models/130072 -O Realistic_Vision_V5_1.safetensors
+wget https://civitai.com/api/download/models/134065 -O CyberRealistic.safetensors
+wget https://civitai.com/api/download/models/102222 -O XXMix_9realistic.safetensors
 
 # VAE
 wget https://civitai.com/api/download/models/28569 -O kl-f8-anime2-vae.ckpt
