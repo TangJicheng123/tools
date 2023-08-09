@@ -17,7 +17,7 @@ def run_test(loader):
     i = 0
     for item in loader:
         short = item['short_prompt']
-        print(f"[{i}] {short}")
+        print(f"[{i}] {len(short)}")
         i += 1
 
 if __name__ == "__main__":
