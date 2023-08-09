@@ -15,6 +15,7 @@ loader = get_wds_loader()
 
 def run_test(loader):
     i = 0
+    print(f"[loader_len] {len(loader)}")
     for item in loader:
         short = item['short_prompt']
         print(f"[{i}] {len(short)}")
