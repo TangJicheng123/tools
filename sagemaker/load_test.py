@@ -1,4 +1,6 @@
 import os
+import time
+import datetime
 from tqdm.auto import tqdm
 from PIL import Image
 from PIL import ImageFile
@@ -46,6 +48,13 @@ def get_id_res_map(entries):
 data_dir = '/home/ec2-user/SageMaker/s3mount/sagemaker/datasets/anime-image/train_data/canny_250k/princess'
 data_dir = '/home/ec2-user/SageMaker/pricenss'
 
-print(f"data_dir: {data_dir}")
+
+print(f"[{datetime.datetime.now()}] data_dir: {data_dir}")
+start_time = time.time()
 
 entries = load_dataset(data_dir=data_dir)
+
+print(f"[{datetime.datetime.now()}] load end")
+end_time = time.time()
+
+print(f"cost: {end_time - start_time} s")
