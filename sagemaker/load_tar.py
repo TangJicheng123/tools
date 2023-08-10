@@ -2,6 +2,7 @@ local_url = "/home/ec2-user/SageMaker/pricenss_pack/{00000000..00000046}.tar"
 
 s3_url = "pipe:aws s3 cp s3://staging-g123-ai/users/tangjicheng/data/{00000000..00000046}.tar -"
 
+import io
 import time
 import datetime
 import webdataset as wds
@@ -23,7 +24,7 @@ def run_test(loader):
         long_prompt = item['long_prompt']
         img = item['img.jpg']
         cond_img = item['cond_img.jpg']
-        image_pil = Image.open(o.BytesIO(img))
+        image_pil = Image.open(io.BytesIO(img[0]))
         width, height = image_pil.size
         i += 1
         if i % 100 == 0:
