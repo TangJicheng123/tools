@@ -1,6 +1,6 @@
 import time
-import keras_cv
 from tensorflow import keras
+import keras_cv
 import matplotlib.pyplot as plt
 
 model = keras_cv.models.StableDiffusion(img_width=512, img_height=512)
