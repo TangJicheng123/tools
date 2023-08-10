@@ -3,3 +3,8 @@ torchvision
 Pillow
 diffusers
 transformers
+tensorrt
+keras-core
+keras-tuner
+keras-cv
+keras-nlp
