@@ -23,7 +23,7 @@ def run_test(loader):
         long_prompt = item['long_prompt']
         img = item['img.jpg']
         cond_img = item['cond_img.jpg']
-        image_pil = Image.open(img)
+        image_pil = Image.open(o.BytesIO(img))
         width, height = image_pil.size
         i += 1
         if i % 100 == 0:
