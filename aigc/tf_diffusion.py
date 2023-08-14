@@ -5,7 +5,7 @@ import keras_cv
 
 model = keras_cv.models.StableDiffusion(img_width=512, img_height=512)
 
-images = model.text_to_image("photograph of an astronaut riding a horse", batch_size=3)
+images = model.text_to_image("photograph of an astronaut riding a horse", batch_size=1)
 
 
 # def plot_images(images):
