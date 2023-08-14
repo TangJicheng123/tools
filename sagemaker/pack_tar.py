@@ -27,10 +27,10 @@ def pack_tar():
         if not os.path.exists(img_path) or not os.path.exists(cond_img_path):
             continue
 
-        with open(txt_path, 'r', buffering=20*1024*1024) as file:
+        with open(txt_path, 'r') as file:
             short_prompt = file.read().rstrip()
 
-        with open(long_txt_path, 'r', buffering=20*1024*1024) as file:
+        with open(long_txt_path, 'r') as file:
             long_prompt = file.read().rstrip()
 
         with open(img_path, 'rb') as file:
